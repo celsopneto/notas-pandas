@@ -34,3 +34,13 @@ df.rename(columns={'Nome':'nome'}, inplace=True)
 ```Python console:
 df.columns = [' '.join(col).strip()  for col in df.columns.values]
 ```
+
+### GroupBy
+Agrupação dos dados pode ser por uma coluna:
+```Python console:
+df.grouped = df.groupby('column_to_group_by', as_index=False).agg({'other_columns': função ou lista de funções*})
+```
+funções aceitas:
+ * em string ex: `min`, `max`, `mean`
+ * definidas pelo usuário
+ * funções `lambda`
