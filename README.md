@@ -1,5 +1,5 @@
 # pandas-tricks
-###### Coisas que são úteis saber para mexer com pandas :panda_face: :panda_face: :panda_face:
+###### Coisas que são úteis saber para mexer com [pandas](https://pandas.pydata.org/pandas-docs/stable/search.html) :panda_face: :panda_face: :panda_face:
   Sabe aqueles pedacinhos de código que resolvem muita coisa?
   o pandas é cheio deles.
  
