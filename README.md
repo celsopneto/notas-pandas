@@ -21,10 +21,11 @@
 ### Estruturas de dados
 As duas estruturas de dados principais do pandas são as `Series` e os `DataFrames`, ambos servem como recipientes para praticamente qualquer tipo de dado. É interessante pensar neles de forma hierárquica, ex: um `DataFrame` é composto por `Series` que são compostas por `str`, `int` etc.
 
+
 | Dimensões | Nome | Descrição |
 | :--- | :--- | :--- |
-| 1 | Series | Dados unidimensionais (pense em listas) rotulados e de tipos homogêneos |
-| 2 | DataFrame | Dados bidimensionais (pense em tabelas)rotulados em colunas com dados potencialmente heterogêneos |
+| 1 | Series | Dados unidimensionais rotulados e de tipos homogêneos |
+| 2 | DataFrame | Dados bidimensionais rotulados em colunas com dados potencialmente heterogêneos |
 
 
 ## E como eu faço?
@@ -69,16 +70,15 @@ Para excel é possível escrever diversos dataframe em diferentes planilhas, exe
 writer = pd.ExcelWriter('nome_do_arquivo.xlsx', engine='xlsxwriter')
 df1.to_excel(writer, 'DataFrame 1')
 df2.to_excel(writer, 'DataFrame 2')
-writer.save
-df1.to_excel(writer, 'DataFrame 1')
+writer.save()
 ```
 ### Testes e checagens rápidas
 
-`pd.DataFrame(np.random.rand(20,5))` Cria um Dataframe com 20 linhas e 5 colunas de números decimais aleatórios* 
+`pd.DataFrame(np.random.rand(20,5))` Cria um Dataframe com 20 linhas e 5 colunas de números decimais aleatórios*
 `pd.Series(minha_lista)` Cria uma série a partir de uma lista
 `df.index = pd.date_range('1900/1/30', periods=df.shape[0])` Adiciona um índice de datas
 
-* Nesse caso você vai precisar de um `import numpy as np` também.
+> * Nesse caso você vai precisar de um `import numpy as np` também.
 
 ## Inspecionando dados:
 `df.head(n)` Primeiras n linhas de um  DataFrame
@@ -88,19 +88,39 @@ df1.to_excel(writer, 'DataFrame 1')
 `df.describe()` | [Síntese estatística][6] para colunas numéricas
 `s.value_counts(dropna=False)` Contagem das ocorrências
 `s.unique()` Valores únicos 
-`s.nunique()` Contagem de valores únicos 
+`s.nunique()` Contagem de valores únicos
+`df.isnull()` Retorna uma matriz booleana do DataFrame onde os valores nulos são True
+`pd.notnull()` O contrário de `df.isnull()`
+  
 
+## Selecionando dados:
+`df[col]` Retorna a coluna "col" como `Series`
+`df[[col1, col2]]` Retorna colunas col1, col2 como `DataFrame`
+`s.iloc[0]` Seleção por índices numéricos
+`s.loc['index_one']` Seleção por índices nomeados
+`df.iloc[0,:]` Primeira linha
+`df.iloc[0,0]` Primeiro elemento da primeira linha
+
+## 
 ### Renomeando colunas
 
 1. Quando você só precisa renomear mesmo.
 ```Python console:
 df.rename(columns={'Nome':'nome'}, inplace=True)
+# ou então:
+df.columns = ['a','b','c']
 ```
 
 2. Depois de um GroupBy (muito útil pra resetar MultiLevelIndexes também :smiley:).
 ```Python console:
 df.columns = [' '.join(col).strip()  for col in df.columns.values]
 ```
+
+3. Quando você está desesperado e quer mudar tudo de uma vez
+```Python console:
+df.rename(columns=lambda x: x + 1)
+```
+
 
 ### GroupBy
 Agrupação dos dados pode ser por uma coluna:
