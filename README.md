@@ -75,45 +75,73 @@ writer.save()
 ```
 ### Testes e checagens rápidas
 
-`pd.DataFrame(np.random.rand(20,5))` Cria um Dataframe com 20 linhas e 5 colunas de números decimais aleatórios*
+`pd.DataFrame(np.random.rand(20,5))` Cria um Dataframe com 20 linhas e 5 colunas de números decimais aleatórios
+> Nesse caso você vai precisar de um `import numpy as np` também.
+
 `pd.Series(minha_lista)` Cria uma série a partir de uma lista
+
 `df.index = pd.date_range('1900/1/30', periods=df.shape[0])` Adiciona um índice de datas
 
-> * Nesse caso você vai precisar de um `import numpy as np` também.
 
 ## Inspecionando dados:
 
 
 `df.head(n)` Primeiras n linhas de um  DataFrame
+
 `df.tail(n)` Últimas n rows do DataFrame
-`df.shape` | retorna um tuple com o número de linhas e colunas do DataFrame
-`df.info()` | Informações sobre índices, tipos de dados e consumo de memória
+
+`df.shape` Retorna um tuple com o número de linhas e colunas do DataFrame
+
+`df.info()` Informações sobre índices, tipos de dados e consumo de memória
+
 `df.describe()` | [Síntese estatística][6] para colunas numéricas
+
 `s.value_counts(dropna=False)` Contagem das ocorrências
+
 `s.unique()` Valores únicos 
+
 `s.nunique()` Contagem de valores únicos
+
 `df.isnull()` Retorna uma matriz booleana do DataFrame onde os valores nulos são True
+
 `pd.notnull()` O contrário de `df.isnull()`
   
 
 ## Selecionando dados:
+
 `df[col]` Retorna a coluna "col" como `Series`
+
 `df[[col1, col2]]` Retorna colunas col1, col2 como `DataFrame`
+
 `s.iloc[0]` Seleção por índices numéricos
+
 `s.loc['index_one']` Seleção por índices nomeados
+
 `df.iloc[0,:]` Primeira linha
+
 `df.iloc[0,0]` Primeiro elemento da primeira linha
 
+
 ## "Data cleansing",  modificando dados:
+
 `df.dropna()` Deleta todas as linhas que posuem valores nulos
+
 `df.dropna(axis=1)` Deleta todas as colunas que posuem valores nulos
+
 `df.dropna(thresh=n)` Deleta todas as linhas que tenham menos que n valores não nulos
+
 `df.fillna(x)` Troca todos os valores nulos por x
+
 `s.fillna(s.mean())` Troca todos os valores nulos pela média (`mean()` pode ser substituido por outras funções do módulo [statistics][7]
+
 `s.astype(tipo_dado)` Converte os valores da série para o tipo de dado
+
 `s.replace(1,'one')` | Troca todos os valores 1 por 'um'
+
 `s.replace([1,3],['um','três'])` Troca todos os 1 por 'um' e 3 por 'três'
+
 `df.set_index(col)` Transforma a coluna col no índice da tabela
+
 
 ### Renomeando colunas
 
@@ -136,8 +164,8 @@ df.rename(columns=lambda x: x + 1)
 
 ## Seleções, filtros, ordenações e agrupamentos
 
-
 ### GroupBy
+
 Agrupação dos dados pode ser por uma coluna:
 ```Python console:
 df.grouped = df.groupby('column_to_group_by', as_index=False).agg({'other_columns': função ou lista de funções*})
