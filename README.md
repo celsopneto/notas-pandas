@@ -53,12 +53,25 @@ pd.options.display.max_columns = 50
 Existe um pd.read_* pra quase tudo :relaxed:
 meus mais usados:
 ```Python console:
-pd.read_csv(io=caminho_arquivo)
-pd.read_json(io=caminho_arquivo)
-pd.read_excel(io=caminho_arquivo, sheet_name=planilha)*
+pd.read_csv(nome_arquivo)
+pd.read_json(nome_arquivo)
+pd.read_excel(nome_arquivo, sheet_name=planilha)*
 ```
 * Use `sheet_name=None` pra criar um `OrderedDict` com todas as planilhas do arquivo.
 
+Também existe um `pd.to_*` para quase todo `pd.read` 
+```Python console:
+pd.to_csv(nome_arquivo)
+pd.to_json(nome_arquivo)
+```
+Para excel é possível escrever diversos dataframe em diferentes planilhas, exemplo:
+```Python console:
+writer = pd.ExcelWriter('nome_do_arquivo.xlsx', engine='xlsxwriter')
+df1.to_excel(writer, 'DataFrame 1')
+df2.to_excel(writer, 'DataFrame 2')
+writer.save
+df1.to_excel(writer, 'DataFrame 1')
+```
 ### Testes e checagens rápidas
 
 `pd.DataFrame(np.random.rand(20,5))` Cria um Dataframe com 20 linhas e 5 colunas de números decimais aleatórios* 
@@ -66,6 +79,16 @@ pd.read_excel(io=caminho_arquivo, sheet_name=planilha)*
 `df.index = pd.date_range('1900/1/30', periods=df.shape[0])` Adiciona um índice de datas
 
 * Nesse caso você vai precisar de um `import numpy as np` também.
+
+## Inspecionando dados:
+`df.head(n)` Primeiras n linhas de um  DataFrame
+`df.tail(n)` Últimas n rows do DataFrame
+`df.shape` | retorna um tuple com o número de linhas e colunas do DataFrame
+`df.info()` | Informações sobre índices, tipos de dados e consumo de memória
+`df.describe()` | [Síntese estatística][6] para colunas numéricas
+`s.value_counts(dropna=False)` Contagem das ocorrências
+`s.unique()` Valores únicos 
+`s.nunique()` Contagem de valores únicos 
 
 ### Renomeando colunas
 
@@ -99,3 +122,4 @@ funções aceitas:
 [3]: https://www.anaconda.com/distribution/
 [4]: https://ipython.org/
 [5]: https://www.dataquest.io/blog/pandas-cheat-sheet/
+[6]: https://pt.wikipedia.org/wiki/S%C3%ADntese_estat%C3%ADstica
