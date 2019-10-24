@@ -7,7 +7,7 @@
 
 ### O que é pandas? 
 
-  Um pacote de análise de dados e estatística para [Python][2] que visa fornecer estruturas de dados rápidas e flexíveis para trabalhar com dados "relacionais" ou "classificados
+  Um pacote de análise de dados e estatística para [Python][2] que visa fornecer estruturas de dados rápidas e flexíveis para trabalhar com dados relacionais ou classificados.
 
 ### Onde posso usar?
   pandas pode ser utilizado para diversos tipos de dados:
@@ -19,13 +19,14 @@
   + Qualquer outro tipo de dados observacionais/estatísticos ou matrizes com linhas e colunas.
 
 ### Estruturas de dados
-As duas estruturas de dados principais do pandas são as `Series` e os `DataFrames`, ambos servem como recipientes para praticamente qualquer tipo de dado. É interessante pensar neles de forma hierárquica, ex: um `DataFrame` é composto por `Series` que são compostas por `str`, `int` etc.
+As duas estruturas de dados principais do pandas são as `Series` e os `DataFrames`, ambos servem como recipientes para praticamente qualquer tipo de dado. É interessante pensar neles de forma hierárquica, ex: um `DataFrame` é composto por `Series` que são compostas por `str`, `int` etc. 
 
 
-| Dimensões | Nome | Descrição |
+
+| Dimensões | Nome | Apelido |
 | :--- | :--- | :--- |
-| 1 | Series | Dados unidimensionais rotulados e de tipos homogêneos |
-| 2 | DataFrame | Dados bidimensionais rotulados em colunas com dados potencialmente heterogêneos |
+| 1 | Series | `s` |
+| 2 | DataFrame | `df` |
 
 
 ## E como eu faço?
@@ -81,6 +82,8 @@ writer.save()
 > * Nesse caso você vai precisar de um `import numpy as np` também.
 
 ## Inspecionando dados:
+
+
 `df.head(n)` Primeiras n linhas de um  DataFrame
 `df.tail(n)` Últimas n rows do DataFrame
 `df.shape` | retorna um tuple com o número de linhas e colunas do DataFrame
@@ -101,7 +104,17 @@ writer.save()
 `df.iloc[0,:]` Primeira linha
 `df.iloc[0,0]` Primeiro elemento da primeira linha
 
-## 
+## "Data cleansing",  modificando dados:
+`df.dropna()` Deleta todas as linhas que posuem valores nulos
+`df.dropna(axis=1)` Deleta todas as colunas que posuem valores nulos
+`df.dropna(thresh=n)` Deleta todas as linhas que tenham menos que n valores não nulos
+`df.fillna(x)` Troca todos os valores nulos por x
+`s.fillna(s.mean())` Troca todos os valores nulos pela média (`mean()` pode ser substituido por outras funções do módulo [statistics][7]
+`s.astype(tipo_dado)` Converte os valores da série para o tipo de dado
+`s.replace(1,'one')` | Troca todos os valores 1 por 'um'
+`s.replace([1,3],['um','três'])` Troca todos os 1 por 'um' e 3 por 'três'
+`df.set_index(col)` Transforma a coluna col no índice da tabela
+
 ### Renomeando colunas
 
 1. Quando você só precisa renomear mesmo.
@@ -120,6 +133,8 @@ df.columns = [' '.join(col).strip()  for col in df.columns.values]
 ```Python console:
 df.rename(columns=lambda x: x + 1)
 ```
+
+## Seleções, filtros, ordenações e agrupamentos
 
 
 ### GroupBy
@@ -143,3 +158,4 @@ funções aceitas:
 [4]: https://ipython.org/
 [5]: https://www.dataquest.io/blog/pandas-cheat-sheet/
 [6]: https://pt.wikipedia.org/wiki/S%C3%ADntese_estat%C3%ADstica
+[7]: https://docs.python.org/3/library/statistics.html
