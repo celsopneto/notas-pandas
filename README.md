@@ -1,6 +1,17 @@
 # notas-pandas
 ###### Coisas que são úteis saber para mexer com [pandas][1] :panda_face: :panda_face: :panda_face:
   Notas sobre o módulo pandas em geral
+  + []()
+## Índice
++  [Antes de mais nada](#antes-de-mais-nada)
+  + [O que é pandas?](#o-que-é-pandas)
+  + [Onde usar?](#onde-posso-usar)
+  + [Estruturas de dados](#estruturas-de-dados)
++ [Como usar](#e-como-eu-faço)
+  + [Instalar](#instalando)
+  + [Importar](#importando)
+  + [Criar DataFrame](#criando-dataFrames)
+    + []()
  
 ## Antes de mais nada
 
@@ -29,10 +40,14 @@ As duas estruturas de dados principais do pandas são as `Series` e os `DataFram
 
 
 ## E como eu faço?
+
+### Instalando
+
   Se você usa [Anaconda][3] ele já está lá!
   
   Caso contrário `pip install pandas` no seu terminal de preferência resolve :smile:
   
+### Importando
   ```Python console:
 import pandas as pd
 ```
@@ -49,7 +64,7 @@ pd.options.display.max_rows = 100
 pd.options.display.max_columns = 50
 ```
 
-## Criando DataFrames
+### Criando DataFrames
 
 Existe um pd.read_* pra quase tudo :relaxed:
 meus mais usados:
@@ -72,7 +87,7 @@ df1.to_excel(writer, 'DataFrame 1')
 df2.to_excel(writer, 'DataFrame 2')
 writer.save()
 ```
-### Testes e checagens rápidas
+#### Testes e checagens rápidas
 
 `pd.DataFrame(np.random.rand(20,5))` Cria um Dataframe com 20 linhas e 5 colunas de números decimais aleatórios
 > Nesse caso você vai precisar de um `import numpy as np` também.
@@ -82,7 +97,7 @@ writer.save()
 `df.index = pd.date_range('1900/1/30', periods=df.shape[0])` Adiciona um índice de datas
 
 
-## Inspecionando dados:
+### Inspecionando dados
 
 
 `df.head(n)` Primeiras n linhas de um  DataFrame
@@ -106,7 +121,7 @@ writer.save()
 `pd.notnull()` O contrário de `df.isnull()`
   
 
-## Selecionando dados:
+### Selecionando dados:
 
 `df[col]` Retorna a coluna "col" como `Series`
 
@@ -121,7 +136,7 @@ writer.save()
 `df.iloc[0,0]` Primeiro elemento da primeira linha
 
 
-## "Data cleansing",  modificando dados:
+### "Data cleansing",  modificando dados:
 
 `df.dropna()` Deleta todas as linhas que posuem valores nulos
 
@@ -135,7 +150,7 @@ writer.save()
 
 `s.astype(tipo_dado)` Converte os valores da série para o tipo de dado
 
-`s.replace(1,'one')` | Troca todos os valores 1 por 'um'
+`s.replace(1,'one')` Troca todos os valores 1 por 'um'
 
 `s.replace([1,3],['um','três'])` Troca todos os 1 por 'um' e 3 por 'três'
 
