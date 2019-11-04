@@ -1,7 +1,6 @@
-# pandas-tricks
+# notas-pandas
 ###### Coisas que são úteis saber para mexer com [pandas][1] :panda_face: :panda_face: :panda_face:
-  Sabe aqueles pedacinhos de código que resolvem muita coisa?
-  o pandas é cheio deles.
+  Notas sobre o módulo pandas em geral
  
 ## Antes de mais nada
 
