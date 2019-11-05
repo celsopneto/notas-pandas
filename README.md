@@ -11,14 +11,12 @@
   + [Importar](#importando)
   + [Criar DataFrame](#criando-dataframes)
     + [Testes e checagens rápidas](#testes-e-checagens-rápidas)
-    
-### Inspecionando dados
-### Selecionando dados
-### "Data cleansing",  modificando dados:
-Precisa melhorar
-### Renomeando colunas
-## Seleções, filtros, ordenações e agrupamentos
-Precisa melhorar
+  + [Inspecionando/visualizando dados](#inspecionando-dados)
+  + [Selecionando](#selecionando)
+  + [Modificando](#modificando)
+  + [Renomeando colunas](#renomeando-colunas)
+  + [Seleções, filtros, ordenações e agrupamentos](#seleções,-filtros,-ordenações-e-agrupamentos)
+  
 ### GroupBy
 
 ## Referências
