@@ -1,18 +1,28 @@
 # notas-pandas
-###### Coisas que são úteis saber para mexer com [pandas][1] :panda_face: :panda_face: :panda_face:
-  Notas sobre o módulo pandas em geral
-  + []()
+  Notas sobre o [pandas][1]
+
 ## Índice
-+  [Antes de mais nada](#antes-de-mais-nada)
++  [Introdução](#antes-de-mais-nada)
   + [O que é pandas?](#o-que-é-pandas)
   + [Onde usar?](#onde-posso-usar)
   + [Estruturas de dados](#estruturas-de-dados)
 + [Como usar](#e-como-eu-faço)
   + [Instalar](#instalando)
   + [Importar](#importando)
-  + [Criar DataFrame](#criando-dataFrames)
-    + []()
- 
+  + [Criar DataFrame](#criando-dataframes)
+    + [Testes e checagens rápidas](#testes-e-checagens-rápidas)
+    
+### Inspecionando dados
+### Selecionando dados
+### "Data cleansing",  modificando dados:
+Precisa melhorar
+### Renomeando colunas
+## Seleções, filtros, ordenações e agrupamentos
+Precisa melhorar
+### GroupBy
+
+## Referências
+
 ## Antes de mais nada
 
 ### O que é pandas? 
@@ -51,18 +61,17 @@ As duas estruturas de dados principais do pandas são as `Series` e os `DataFram
   ```Python console:
 import pandas as pd
 ```
-  
 
-  
 
-  Ideal pra deixar logo depois do import.
+Ideal pra deixar logo depois do import.
   Essencial quando estiver olhando um arquivo no [*IPython*][4]
-  
+
 
 ```Python console:
 pd.options.display.max_rows = 100
 pd.options.display.max_columns = 50
 ```
+
 
 ### Criando DataFrames
 
@@ -74,6 +83,7 @@ pd.read_json(nome_arquivo)
 pd.read_excel(nome_arquivo, sheet_name=planilha)*
 ```
 * Use `sheet_name=None` pra criar um `OrderedDict` com todas as planilhas do arquivo.
+[Ver mais][8]
 
 Também existe um `pd.to_*` para quase todo `pd.read` 
 ```Python console:
@@ -108,7 +118,7 @@ writer.save()
 
 `df.info()` Informações sobre índices, tipos de dados e consumo de memória
 
-`df.describe()` | [Síntese estatística][6] para colunas numéricas
+`df.describe()` [Síntese estatística][6] para colunas numéricas
 
 `s.value_counts(dropna=False)` Contagem das ocorrências
 
@@ -121,7 +131,7 @@ writer.save()
 `pd.notnull()` O contrário de `df.isnull()`
   
 
-### Selecionando dados:
+### Selecionando
 
 `df[col]` Retorna a coluna "col" como `Series`
 
@@ -136,7 +146,7 @@ writer.save()
 `df.iloc[0,0]` Primeiro elemento da primeira linha
 
 
-### "Data cleansing",  modificando dados:
+### Modificando
 
 `df.dropna()` Deleta todas as linhas que posuem valores nulos
 
@@ -157,7 +167,7 @@ writer.save()
 `df.set_index(col)` Transforma a coluna col no índice da tabela
 
 
-### Renomeando colunas
+#### Renomeando colunas
 
 1. Quando você só precisa renomear mesmo.
 ```Python console:
@@ -201,3 +211,4 @@ funções aceitas:
 [5]: https://www.dataquest.io/blog/pandas-cheat-sheet/
 [6]: https://pt.wikipedia.org/wiki/S%C3%ADntese_estat%C3%ADstica
 [7]: https://docs.python.org/3/library/statistics.html
+[8]: https://www.dataquest.io/blog/pandas-cheat-sheet/#importingdata
