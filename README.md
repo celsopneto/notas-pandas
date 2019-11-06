@@ -14,7 +14,7 @@
   + [Selecionando](#selecionando)
   + [Modificando](#modificando)
   + [Renomeando colunas](#renomeando-colunas)
-  + [Agrupamentos](#groupby)
+  + [Agrupamentos](#agrupamento-o-groupby)
   
 
 ## Referências
@@ -62,28 +62,40 @@ Ideal pra deixar logo depois do import.
 
 
 ```Python console:
-pd.options.display.max_rows = 100
-pd.options.display.max_columns = 50
+pd.options.display.max_rows = x  
+pd.options.display.max_columns = y
 ```
 
 
-### Criando DataFrames
+## Criando DataFrames
 
-Existe um pd.read_* pra quase tudo :relaxed:
-meus mais usados:
+Os __DataFrames__ são estrutura de dados primária do pandas.
+
+```Python console:
+df = pd.DataFrame({'col1': [1, 2], 'col2': [3, 4]})
+```
+
+### Funções de leitura de input
+Existe um `pd.read_*` para quase toda extensão de arquivo
+
 ```Python console:
 pd.read_csv(nome_arquivo)
 pd.read_json(nome_arquivo)
 pd.read_excel(nome_arquivo, sheet_name=planilha) # sheet_name=None cria um OrderedDict com todas as planilhas do arquivo.
 ```
 
-[Ver mais][8]
 
-Também existe um `pd.to_`* pra quase todo `pd.read_`*** 
+
+Também existe um `pd.to_*` pra quase todo `pd.read_*`
 ```Python console:
 pd.to_csv(nome_arquivo)
 pd.to_json(nome_arquivo)
+#...
 ```
+
+[Ver mais][8]
+
+
 Para excel é possível escrever diversos dataframe em diferentes planilhas, exemplo:
 ```Python console:
 writer = pd.ExcelWriter('nome_do_arquivo.xlsx', engine='xlsxwriter')
@@ -190,7 +202,7 @@ df.rename(columns={'Nome':'nome'}, inplace=True)
 df.columns = ['a','b','c']
 ```
 
-2. Depois de um GroupBy (muito útil pra resetar MultiLevelIndexes também :smiley:).
+2. Depois de um GroupBy (muito útil pra resetar MultiLevelIndexes também).
 ```Python console:
 df.columns = [' '.join(col).strip()  for col in df.columns.values]
 ```
@@ -200,9 +212,8 @@ df.columns = [' '.join(col).strip()  for col in df.columns.values]
 df.rename(columns=lambda x: x + 1)
 ```
 
-## GroupBy
+## Agrupamentos, o groupby
 
-Agrupação dos dados pode ser por uma coluna:
 ```Python console:
 df.grouped = df.groupby('column_to_group_by', as_index=False).agg({'other_columns': função ou lista de funções*})
 ```
@@ -223,4 +234,5 @@ funções aceitas:
 [5]: https://www.dataquest.io/blog/pandas-cheat-sheet/
 [6]: https://pt.wikipedia.org/wiki/S%C3%ADntese_estat%C3%ADstica
 [7]: https://docs.python.org/3/library/statistics.html
-[8]: https://www.dataquest.io/blog/pandas-cheat-sheet/#importingdata
+[8]: https://pandas.pydata.org/pandas-docs/stable/reference/frame.html#serialization-io-conversion
+
