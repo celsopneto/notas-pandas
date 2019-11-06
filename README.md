@@ -2,8 +2,7 @@
   Notas sobre o [pandas][1]
 
 ## Índice
-+  [Introdução](#antes-de-mais-nada)
-  + [O que é pandas?](#o-que-é-pandas)
++  [Introdução](#o-que-é-pandas)
   + [Onde usar?](#onde-posso-usar)
   + [Estruturas de dados](#estruturas-de-dados)
 + [Como usar](#e-como-eu-faço)
@@ -15,7 +14,7 @@
   + [Selecionando](#selecionando)
   + [Modificando](#modificando)
   + [Renomeando colunas](#renomeando-colunas)
-  + [Seleções, filtros, ordenações e agrupamentos](#seleções,-filtros,-ordenações-e-agrupamentos)
+  + [Seleções, filtros, ordenações e agrupamentos](#seleções-filtros-ordenações-e-agrupamentos)
   
 ### GroupBy
 
@@ -78,12 +77,12 @@ meus mais usados:
 ```Python console:
 pd.read_csv(nome_arquivo)
 pd.read_json(nome_arquivo)
-pd.read_excel(nome_arquivo, sheet_name=planilha)*
+pd.read_excel(nome_arquivo, sheet_name=planilha) # sheet_name=None cria um OrderedDict com todas as planilhas do arquivo.
 ```
-* Use `sheet_name=None` pra criar um `OrderedDict` com todas as planilhas do arquivo.
+
 [Ver mais][8]
 
-Também existe um `pd.to_*` para quase todo `pd.read` 
+Também existe um `pd.to_`* pra quase todo `pd.read_`*** 
 ```Python console:
 pd.to_csv(nome_arquivo)
 pd.to_json(nome_arquivo)
