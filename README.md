@@ -14,15 +14,12 @@
   + [Selecionando](#selecionando)
   + [Modificando](#modificando)
   + [Renomeando colunas](#renomeando-colunas)
-  + [Seleções, filtros, ordenações e agrupamentos](#seleções-filtros-ordenações-e-agrupamentos)
+  + [Agrupamentos](#groupby)
   
-### GroupBy
 
 ## Referências
 
-## Antes de mais nada
-
-### O que é pandas? 
+## O que é pandas? 
 
   Um pacote de análise de dados e estatística para [Python][2] que visa fornecer estruturas de dados rápidas e flexíveis para trabalhar com dados relacionais ou classificados.
 
@@ -96,8 +93,20 @@ writer.save()
 ```
 #### Testes e checagens rápidas
 
-`pd.DataFrame(np.random.rand(20,5))` Cria um Dataframe com 20 linhas e 5 colunas de números decimais aleatórios
-> Nesse caso você vai precisar de um `import numpy as np` também.
+```Python:
+"""
+Cria um Dataframe com 20 linhas e 5 colunas de números decimais aleatórios, e dá os nomes `'a','b','c','d' e 'e'`
+para as colunas.
+"""
+
+import pandas as pd
+import numpy as np
+df = pd.DataFrame(np.random.rand(20,5))
+df.columns = ['a','b','c','d','e']
+``` 
+
+
+> Note que você vai precisar de um `import numpy as np` também.
 
 `pd.Series(minha_lista)` Cria uma série a partir de uma lista
 
@@ -136,11 +145,17 @@ writer.save()
 
 `s.iloc[0]` Seleção por índices numéricos
 
-`s.loc['index_one']` Seleção por índices nomeados
+`s.loc['índice_um']` Seleção por índices nomeados
+
+`df.loc[df[coluna] == 0]` Seleciona todos os items no dataframe que apresentem valor __0__ para a __coluna__
+
+ `df.loc[(df[coluna] == 0) & (df[outra_coluna] > 0)]` Seleciona todos os items no dataframe que apresentem valor __0__ para __coluna__ e maior que __0__ para __outra_coluna__.
+ 
 
 `df.iloc[0,:]` Primeira linha
 
 `df.iloc[0,0]` Primeiro elemento da primeira linha
+
 
 
 ### Modificando
@@ -164,6 +179,8 @@ writer.save()
 `df.set_index(col)` Transforma a coluna col no índice da tabela
 
 
+
+
 #### Renomeando colunas
 
 1. Quando você só precisa renomear mesmo.
@@ -183,9 +200,7 @@ df.columns = [' '.join(col).strip()  for col in df.columns.values]
 df.rename(columns=lambda x: x + 1)
 ```
 
-## Seleções, filtros, ordenações e agrupamentos
-
-### GroupBy
+## GroupBy
 
 Agrupação dos dados pode ser por uma coluna:
 ```Python console:
